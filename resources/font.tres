@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://busel1n8t2jtm"]
+
+[ext_resource type="FontFile" uid="uid://b6vw1yea7qk1y" path="res://assets/fonts/slkscr.ttf" id="1_nkiyt"]
+
+[resource]
+base_font = ExtResource("1_nkiyt")

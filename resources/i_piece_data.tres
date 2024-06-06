@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bkbsc7lo00nff"]
+
+[ext_resource type="Script" path="res://scripts/piece_data.gd" id="2_g7sqy"]
+
+[resource]
+script = ExtResource("2_g7sqy")
+tetromino_type = 0
+spawn_position = Vector2(-24, -456)
+tetromino_medium = 1

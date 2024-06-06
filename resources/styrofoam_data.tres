@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ciecdagbc38fp"]
+
+[ext_resource type="Script" path="res://scripts/medium_data.gd" id="2_l3mwv"]
+[ext_resource type="Texture2D" uid="uid://qiuk4wivi118" path="res://assets/styrofoam/STYROFOAM_01.png" id="2_qrtju"]
+
+[resource]
+script = ExtResource("2_l3mwv")
+textures = Array[Texture]([ExtResource("2_qrtju")])

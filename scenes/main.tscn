@@ -1,0 +1,192 @@
+[gd_scene load_steps=21 format=3 uid="uid://dhkt0jky2oa65"]
+
+[ext_resource type="Texture2D" uid="uid://dj1olp7v7y623" path="res://assets/Border.png" id="1_wbe65"]
+[ext_resource type="Texture2D" uid="uid://dddenph2txf1h" path="res://assets/Grid.png" id="2_bmtpt"]
+[ext_resource type="Texture2D" uid="uid://cnxt4vxrn84dd" path="res://assets/ui/tetris_ui.png" id="2_vh4cd"]
+[ext_resource type="Script" path="res://scripts/board.gd" id="3_d3076"]
+[ext_resource type="Script" path="res://scripts/piece_spawner.gd" id="3_ixwhq"]
+[ext_resource type="PackedScene" uid="uid://2a8nca65i5pd" path="res://scenes/tetromino.tscn" id="4_yrv6b"]
+[ext_resource type="Script" path="res://scripts/cloud_board.gd" id="5_ahmyo"]
+[ext_resource type="PackedScene" uid="uid://ger4a3ufnumt" path="res://scenes/waterbody.tscn" id="6_wg10e"]
+[ext_resource type="FontVariation" uid="uid://busel1n8t2jtm" path="res://resources/font.tres" id="9_l20qf"]
+[ext_resource type="Script" path="res://scripts/game_ui.gd" id="10_k5qa5"]
+[ext_resource type="Texture2D" uid="uid://swfipt413e0v" path="res://assets/ui/fire.png" id="11_t6hla"]
+[ext_resource type="Texture2D" uid="uid://dj71hckjdk3ta" path="res://assets/ui/button_normal.png" id="12_iwdmx"]
+[ext_resource type="Texture2D" uid="uid://c3rgfb0wmqdd" path="res://assets/ui/button_pressed.png" id="13_ys2c3"]
+
+[sub_resource type="Gradient" id="Gradient_nxk33"]
+colors = PackedColorArray(0.327968, 0.616349, 0.846152, 1, 0.177567, 0.424887, 0.613849, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_862bw"]
+gradient = SubResource("Gradient_nxk33")
+width = 717
+height = 717
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0dqt1"]
+particles_animation = true
+particles_anim_h_frames = 16
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i78vj"]
+texture = ExtResource("12_iwdmx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oi4ei"]
+texture = ExtResource("12_iwdmx")
+modulate_color = Color(0.65834, 0.65834, 0.65834, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a8ssn"]
+texture = ExtResource("13_ys2c3")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ygpb1"]
+
+[node name="main" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -402.0
+offset_top = -608.0
+offset_right = 878.0
+offset_bottom = 668.0
+texture = SubResource("GradientTexture2D_862bw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(237, 32)
+zoom = Vector2(0.4, 0.4)
+
+[node name="Border" type="TextureRect" parent="."]
+offset_left = -256.0
+offset_top = -496.0
+offset_right = 1794.0
+offset_bottom = 3474.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_wbe65")
+
+[node name="TetrisUi" type="Sprite2D" parent="Border"]
+position = Vector2(1988, 1876)
+scale = Vector2(64.065, 64.065)
+texture = ExtResource("2_vh4cd")
+
+[node name="GridTexture" type="TextureRect" parent="Border"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -961.0
+offset_top = -1929.0
+offset_right = 959.0
+offset_bottom = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bmtpt")
+stretch_mode = 1
+
+[node name="Board" type="Node" parent="."]
+script = ExtResource("3_d3076")
+tetromino_scene = ExtResource("4_yrv6b")
+
+[node name="Clouds" type="Node2D" parent="Board"]
+
+[node name="CloudBoard" type="Node2D" parent="."]
+script = ExtResource("5_ahmyo")
+tetromino_scene = ExtResource("4_yrv6b")
+
+[node name="Timer" type="Timer" parent="CloudBoard"]
+one_shot = true
+
+[node name="Waterbody" parent="." instance=ExtResource("6_wg10e")]
+position = Vector2(-240, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Waterbody"]
+material = SubResource("CanvasItemMaterial_0dqt1")
+position = Vector2(240, -480)
+emitting = false
+amount = 400
+lifetime = 1.4
+emission_shape = 3
+emission_rect_extents = Vector2(250, 1)
+gravity = Vector2(10, 980)
+angle_min = 15.0
+angle_max = 15.0
+scale_amount_max = 20.0
+anim_speed_max = 64.0
+anim_offset_max = 1.0
+
+[node name="PieceSpawner" type="Node" parent="."]
+script = ExtResource("3_ixwhq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 351.0
+offset_top = -464.0
+offset_right = 586.0
+offset_bottom = -427.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_l20qf")
+theme_override_font_sizes/font_size = 36
+text = "NEXT PIECE"
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_k5qa5")
+
+[node name="Score" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 342.0
+offset_top = -82.0
+offset_right = 597.0
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("9_l20qf")
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 2
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 339.0
+offset_top = 125.0
+offset_right = 599.0
+offset_bottom = 253.0
+
+[node name="Bonus" type="Label" parent="UI/Control"]
+layout_mode = 2
+offset_left = 110.0
+offset_top = 19.0
+offset_right = 253.0
+offset_bottom = 106.0
+theme_override_fonts/font = ExtResource("9_l20qf")
+theme_override_font_sizes/font_size = 86
+text = "x1"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control"]
+visible = false
+layout_mode = 2
+offset_left = -23.0
+offset_top = -45.0
+offset_right = 17.0
+offset_bottom = -4.99999
+scale = Vector2(4.06938, 4.06938)
+texture = ExtResource("11_t6hla")
+
+[node name="Button" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 300.0
+offset_right = 339.0
+offset_bottom = 310.0
+scale = Vector2(15, 15)
+theme_override_styles/normal = SubResource("StyleBoxTexture_i78vj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_oi4ei")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_a8ssn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ygpb1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="timeout" from="CloudBoard/Timer" to="CloudBoard" method="_on_timer_timeout"]
+[connection signal="pressed" from="UI/Button" to="UI" method="_on_button_pressed"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://2a8nca65i5pd"]
+
+[ext_resource type="Script" path="res://scripts/tetromino.gd" id="1_5upe8"]
+
+[node name="Tetromino" type="Node2D"]
+position = Vector2(0, 200)
+script = ExtResource("1_5upe8")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

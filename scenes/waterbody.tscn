@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ger4a3ufnumt"]
+
+[ext_resource type="Script" path="res://scripts/waterbody.gd" id="1_ev6yw"]
+[ext_resource type="Script" path="res://scripts/smooth_path.gd" id="2_426t4"]
+
+[sub_resource type="Curve2D" id="Curve2D_tiytl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m12h5"]
+size = Vector2(310, 125)
+
+[node name="Waterbody" type="Node2D"]
+script = ExtResource("1_ev6yw")
+
+[node name="WaterPolygon" type="Polygon2D" parent="."]
+color = Color(0.384314, 1, 1, 0.388235)
+
+[node name="WaterBorder" type="Path2D" parent="."]
+curve = SubResource("Curve2D_tiytl")
+script = ExtResource("2_426t4")
+_smooth = 1.0
+_straighten = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(164, 185)
+shape = SubResource("RectangleShape2D_m12h5")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

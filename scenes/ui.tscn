@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://62hw054512xe"]
+
+[ext_resource type="FontVariation" uid="uid://busel1n8t2jtm" path="res://resources/font.tres" id="2_kmmxg"]
+[ext_resource type="FontFile" uid="uid://b6vw1yea7qk1y" path="res://assets/fonts/slkscr.ttf" id="3_k343u"]
+
+[sub_resource type="GDScript" id="GDScript_guchh"]
+script/source = "extends Control
+
+@onready var score = $Score
+@onready var bonus = $Control/Bonus
+@onready var texture_rect = $Control/TextureRect
+
+func _ready():
+	# TEST, it works
+	set_scores(2)
+
+func _process(delta):
+	# TEST, got error
+	#set_scores(2)
+	score.text = '*' + str(0)
+
+func set_scores(score):
+	print(score)
+	score.text = 's'
+
+func set_bonus(bonus):
+	#print(bonus)????????????????????????????????????????
+	bonus.text = '2' #\"x\" + str(bonus)
+	if bonus > 1:
+		texture_rect.show()
+
+func _on_button_pressed():
+	get_tree().reload_current_scene()
+"
+
+[sub_resource type="FontVariation" id="FontVariation_el5jv"]
+base_font = ExtResource("3_k343u")
+
+[node name="UI" type="CanvasLayer"]
+script = SubResource("GDScript_guchh")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kmmxg")
+theme_override_font_sizes/font_size = 42
+text = "Game Over"
+
+[node name="Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_el5jv")
+theme_override_font_sizes/font_size = 25
+text = "Restart
+"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

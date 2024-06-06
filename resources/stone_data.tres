@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://cccwjvmbc0ndt"]
+
+[ext_resource type="Texture2D" uid="uid://brdvshlpfhnio" path="res://assets/stone/STONE_01.png" id="2_2j04v"]
+[ext_resource type="Script" path="res://scripts/medium_data.gd" id="3_0qmiu"]
+[ext_resource type="Texture2D" uid="uid://sbsslquyc6uy" path="res://assets/stone/STONE_02.png" id="3_na1ji"]
+[ext_resource type="Texture2D" uid="uid://bb7h4s36wdj12" path="res://assets/stone/STONE_03.png" id="4_5v6ip"]
+[ext_resource type="Texture2D" uid="uid://brs78alcuvq20" path="res://assets/stone/STONE_04.png" id="5_dkk1u"]
+[ext_resource type="Texture2D" uid="uid://dwp26vhxws4yn" path="res://assets/stone/STONE_05.png" id="6_wq1b0"]
+[ext_resource type="Texture2D" uid="uid://dg6u8opnggbr7" path="res://assets/stone/STONE_06.png" id="7_i2rcn"]
+[ext_resource type="Texture2D" uid="uid://c0owj3jeortd0" path="res://assets/stone/STONE_07.png" id="8_ilxdm"]
+
+[resource]
+script = ExtResource("3_0qmiu")
+textures = Array[Texture]([ExtResource("2_2j04v"), ExtResource("3_na1ji"), ExtResource("4_5v6ip"), ExtResource("5_dkk1u"), ExtResource("6_wq1b0"), ExtResource("7_i2rcn"), ExtResource("8_ilxdm")])

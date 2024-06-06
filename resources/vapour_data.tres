@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cjrejk2ttkajy"]
+
+[ext_resource type="Script" path="res://scripts/medium_data.gd" id="1_0r8on"]
+[ext_resource type="Texture2D" uid="uid://cra7xx2h6u0dh" path="res://assets/vapour/VAPOUR_01.png" id="2_03vt4"]
+
+[resource]
+script = ExtResource("1_0r8on")
+textures = Array[Texture]([ExtResource("2_03vt4")])
